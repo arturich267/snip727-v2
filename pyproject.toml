@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "snip727-v2"
+version = "0.1.0"
+description = "DeFi sniping bot"
+authors = ["Team <team@example.com>"]
+readme = "README.md"
+packages = [{include = "snip727", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+web3 = "^6.11.0"
+sqlalchemy = "^2.0.0"
+asyncpg = "^0.29.0"
+alembic = "^1.13.0"
+pydantic-settings = "^2.1.0"
+python-telegram-bot = "^20.5"
+redis = "^5.0.0"
+structlog = "^24.1.0"
+pydantic = "^2.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+ruff = "^0.1.0"
+mypy = "^1.7.0"
+pytest-asyncio = "^0.21.0"
+pytest-cov = "^4.1.0"
+
+[tool.poetry.scripts]
+bot = "snip727.bot.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--cov=src/snip727 --cov-report=term-missing --cov-fail-under=50"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
