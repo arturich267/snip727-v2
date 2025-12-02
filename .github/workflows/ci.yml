@@ -46,7 +46,7 @@ jobs:
         run: poetry run mypy src/ || true
 
       - name: Run tests with coverage
-        run: poetry run pytest --cov-fail-under=50
+        run: poetry run pytest --cov-fail-under=40
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

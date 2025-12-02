@@ -1,5 +1,5 @@
 """Tests for configuration module."""
-from snip727.core.config import get_settings
+from src.snip727.core.config import get_settings
 
 
 def test_get_settings() -> None:

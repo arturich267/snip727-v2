@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock, MagicMock
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from snip727.bot.main import start, status
+from src.snip727.bot.main import start, status
 
 
 @pytest.mark.asyncio
