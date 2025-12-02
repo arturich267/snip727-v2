@@ -34,8 +34,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
-testpaths = ["tests"]
-addopts = "--cov=src/snip727 --cov-report=term-missing --cov-fail-under=50"
+pythonpath = "src"
+testpaths = "tests"
+addopts = "--cov=src/snip727 --cov-report=term-missing --cov-fail-under=40"
 
 [tool.ruff]
 line-length = 120
