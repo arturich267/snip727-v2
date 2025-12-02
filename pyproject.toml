@@ -17,6 +17,8 @@ python-telegram-bot = "^20.5"
 redis = "^5.0.0"
 structlog = "^24.1.0"
 pydantic = "^2.5.0"
+transformers = {extras = ["torch"], version = "^4.36.0"}
+sentence-transformers = "^2.2.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"

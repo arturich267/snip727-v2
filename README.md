@@ -11,6 +11,7 @@
 - **python-telegram-bot** — Telegram интеграция
 - **Redis** — кэширование и очереди
 - **structlog** — структурированное логирование
+- **transformers** — анализ настроения (rubert-base-cased)
 - **Poetry** — управление зависимостями
 
 ## Структура проекта
@@ -21,6 +22,7 @@ snip727-v2/
 │   ├── core/           # Конфигурация и утилиты
 │   ├── db/             # Слой базы данных
 │   ├── bot/            # Telegram бот
+│   ├── services/       # Сервисы (анализ настроения)
 │   └── web3/           # Интеграция с блокчейном
 ├── tests/              # Тесты
 ├── migrations/         # Alembic миграции
@@ -105,7 +107,7 @@ poetry run alembic revision --autogenerate -m "описание миграции
 ## Следующие шаги
 
 - [ ] Мониторинг пулов Uniswap
-- [ ] Анализ настроения (DeepPavlov)
+- [x] Анализ настроения (rubert-base-cased-sentiment)
 - [ ] Стратегия N-of-4
 - [ ] Интеграция с MEV-protection
 - [ ] Метрики и алерты
