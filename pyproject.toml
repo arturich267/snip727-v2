@@ -17,6 +17,9 @@ python-telegram-bot = "^20.5"
 redis = "^5.0.0"
 structlog = "^24.1.0"
 pydantic = "^2.5.0"
+transformers = "^4.36.0"
+torch = "^2.1.0"
+aiohttp = "^3.9.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
