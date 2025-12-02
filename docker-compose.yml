@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: snip727_postgres
+    environment:
+      POSTGRES_USER: snip727
+      POSTGRES_PASSWORD: snip727
+      POSTGRES_DB: snip727_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U snip727"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: snip727_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  bot:
+    build: .
+    container_name: snip727_bot
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_ADMIN_IDS: ${BOT_ADMIN_IDS:-123456789}
+      DATABASE_URL: postgresql+asyncpg://snip727:snip727@postgres:5432/snip727_db
+      REDIS_URL: redis://redis:6379/0
+      WEB3_PROVIDER_URL: ${WEB3_PROVIDER_URL:-https://mainnet.base.org}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      DEBUG: ${DEBUG:-false}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
