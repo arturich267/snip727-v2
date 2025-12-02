@@ -24,3 +24,7 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
     """Get database session."""
     async with AsyncSessionLocal() as session:
         yield session
+
+
+# Import models for alembic autogenerate
+from snip727.db.models import Base
